@@ -1,0 +1,53 @@
+<div class="row justify-content-center mt-2">
+  <div class="col-md-5 align-self-center">
+    <form>
+      <div class="form-group">
+        <label for="name">Nombre del curso:</label>
+        <input type="text" class="form-control" id="input_name" placeholder="Ingrese un nombre de curso" required autocomplete="off">
+      </div>
+      <div class="form-group">
+        <label for="description">Descripción del curso</label>
+        <textarea name="description" class="form-control" id="textarea_description" placeholder="Descripción del curso" autocomplete="off"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="price">Precio:</label>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <div class="input-group-text">$</div>
+          </div>
+          <input type="number" step=".01" min="0" class="form-control" id="input_price" placeholder="Ingrese un precio" required autocomplete="off">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="avalaible">Curso disponible:</label>
+        <select id="input_available" class="form-control" aria-describedby="avalaibleHelp" required>
+          <option value="1">Si</option>
+          <option value="2">No</option>
+        </select>
+        <small id="avalaibleHelp" class="form-text text-muted">El curso estará disponible al público actualmente</small>
+      </div>
+      <div class="form-group">
+        <label for="kindCourse">Tipo de curso:</label>
+        <select id="input_kindCourse" class="form-control" required>
+          <option value="Presencial">Presencial</option>
+          <option value="Online">Online</option>
+        </select>
+      </div>
+      <div class="form-group" id="form-group-offerPrice" hidden>
+        <label for="offerPrice">Precio promoción:</label>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <div class="input-group-text">$</div>
+          </div>
+          <input type="number" step=".01" min="0" class="form-control" id="input_offerPrice" placeholder="Ingrese un precio de promoción" autocomplete="off">
+        </div>
+        <small id="avalaibleHelp" class="form-text text-muted">Ingrese un precio de promoción solo si este tiene una</small>
+      </div>
+      <div class="form-group" id="form-group-dateAvailable" hidden>
+        <label for="dateAvailable">Promoción valida hasta:</label>
+        <input type="date" id="input_dateAvailable" class="form-control" name="" value="">
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+</div>
