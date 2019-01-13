@@ -51,7 +51,7 @@
             <tr>
               <th scope="row">001</th>
               <td>William Shakespeare</td>
-              <td>2,300.00 Mx</td>
+              <td>2,300.00 MXN</td>
               <td>1 de marzo de 2019</td>
               <td>
                 <div class="btn-group" role="group" aria-label="Basic example">

@@ -5,7 +5,7 @@
   <!-- Main content -->
   <section class="content">
       <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-10">
         <div class="alert alert-warning" role="alert">
         Personas que han notificado realizar el pago
         </div>
@@ -15,20 +15,20 @@
                 <th scope="col">Nombre</th>
                 <th scope="col">Curso</th>
                 <th scope="col">Monto</th>
-                <th scope="col">Descuento</th>
                 <th scope="col">N° referencia</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <th scope="row">002</th>
+                <th scope="row">Carlos</th>
                 <td>Akira Kurosawa</td>
                 <td>2,000.00 Mx</td>
-                <td>20 de enero de 2019</td>
+                <td>123423423423423</td>
+                <!--<td><input type="text" name="link_curso" value="https://cursosenlinea.cinetecanacional.net"></td>
+                <td><input type="text" name="password" value="" disabled></td>-->
                 <td>
                   <div class="btn-group" role="group" aria-label="Basic example">
-                    <button type="button" class="btn btn-primary">Detalles de pago</button>
-                    <button type="button" class="btn btn-success">Ya he realizado mi pago</button>
+                    <button type="button" class="btn btn-primary">Asignar credenciales</button>
                   </div>
                 </td>
               </tr>
@@ -40,21 +40,23 @@
         <table class="table table-striped">
           <thead>
             <tr>
-              <th scope="col">Clave</th>
               <th scope="col">Nombre</th>
-              <th scope="col">Precio</th>
-              <th scope="col">Vigencia del curso</th>
+              <th scope="col">Razon social</th>
+              <th scope="col">Correo electronico</th>
+              <th scope="col">RFC</th>
+              <th scope="col">Dirección</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <th scope="row">001</th>
-              <td>William Shakespeare</td>
-              <td>2,300.00 Mx</td>
-              <td>1 de marzo de 2019</td>
+              <td>Carlos</td>
+              <td>Persona física</td>
+              <td>josecarlos19979@hotmail.com </td>
+              <td>HECC970929CL0</td>
+              <td>Av. Morelos 577 </td>
               <td>
                 <div class="btn-group" role="group" aria-label="Basic example">
-                  <button type="button" class="btn btn-primary">Solicitar factura</button>
+                  <button type="button" class="btn btn-primary">Notificar envio a email</button>
                 </div>
               </td>
             </tr>

@@ -8,7 +8,7 @@ class Referencia{
   public $fecha_limite_pago;
   public $referencia;
   public $digitos_fecha;
-  function __construct($boleta, $curso_id){
+  function __construct($boleta, $curso_id, $precio){
     //la boleta debe de ser siempre igual a 9 dígitos por lo que se completara con ceros en caso de no ser lo
     $this->matricula = $this->convertir_maticula($boleta);
     //la clave de curso debe ser siempre igual a 3 dígitos por lo que se completara con ceros en caso de no ser lo
@@ -16,21 +16,11 @@ class Referencia{
     //Se obtiene los 4 digitos que representaran la fecha en la referencia
     $this->digitos_fecha = str_pad($this->convertir_fecha(), 4, "0", STR_PAD_LEFT);
     //Se obtiene el digito que representaran el precio en la referencia
-    $this->digito_precio = $this->convertir_precio();
+    $this->digito_precio = $this->convertir_precio($precio);
     //Se obtiene los 2 digitos que representaran el codigo verificador de toda la referencia
     $this->digitos_verificadores = str_pad($this->codigo_verificador_referencia(), 2, "0", STR_PAD_LEFT);
 
     $this->referencia = "$this->matricula"."$this->curso"."$this->digitos_fecha"."$this->digito_precio"."$this->digitos_verificadores";
-  }
-  //Implementamos nuestro método para insertar registros
-  public function insertar($nombre, $descripcion, $precio, $disponible, $tipo_curso,$precio_promocion, $vigencia_promocion,$promocion_disponible){
-    $sql = "INSERT INTO cursos (nombre, descripcion, precio, disponible, tipo_curso, precio_promocion, vigencia_promocion)
-    VALUES('$nombre', '$descripcion', '$precio', '$disponible', '$tipo_curso', '$precio_promocion', '$vigencia_promocion')";
-    return ejecutarConsulta($sql);
-  }
-  public function motrar_datos_curso($curso_id){
-    $sql = "SELECT * FROM cursos WHERE curso_id = '$curso_id'";
-    return ejecutarConsultaSimpleFila($sql);
   }
   public function convertir_fecha(){
     $hoy = date('Y-m-j'); //formato de fecha
@@ -73,8 +63,7 @@ class Referencia{
     $digitos_maticula =implode("", $array_digitos_matricula2);
     return $digitos_maticula;
   }
-  public function convertir_precio(){
-    $precio = "1000.00";
+  public function convertir_precio($precio){
     $precio_sin_decimal =str_replace(".", "", $precio);
     $array_digitos_precio  = array_map('intval', str_split($precio_sin_decimal));
     $array_ponderados = array();
@@ -129,6 +118,9 @@ class Referencia{
   }
   public function get_referencia(){
     return $this->referencia;
+  }
+  public function get_fecha_limite_pago(){
+    return $this->fecha_limite_pago;
   }
 }
 

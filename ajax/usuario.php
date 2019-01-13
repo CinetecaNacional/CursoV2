@@ -79,6 +79,7 @@ switch ($_GET["op"]){
         if (isset($fetch)){
             //Declaramos las variables de sesión
             $_SESSION['usuario_id']=$fetch->usuario_id;
+            $_SESSION['matricula']=$fetch->boleta;
             $_SESSION['tipo_usuario']=$fetch->tipo_usuario;
             $_SESSION['nombre']=$fetch->nombres.' '.$fetch->apellido_paterno.' '.$fetch->apellido_materno;
         }

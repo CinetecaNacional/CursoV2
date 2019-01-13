@@ -24,7 +24,7 @@ $response = $curso -> listar_disponibles();?>
     <p class="card-text"></p>';
     if($registro->promocion_disponible==1){
       echo'<p class="card-text"><b>Precio de promocion</b>: $ '.number_format($registro->precio_promocion,2,".",",").' MXN vigente hasta el <b>'.$fechaFormato.'</b></p>
-      <button type="button" class="btn btn-primary" >Registrarme</button>
+      <button type="button" class="btn btn-primary" onclick="inscribir('.$registro->curso_id.')">Registrarme</button>
       <button type="button" class="btn btn-link" data-toggle="modal" data-target="#Curso'.$registro->curso_id.'" >Más información</button>
       </div>
       </div>
@@ -57,7 +57,7 @@ $response = $curso -> listar_disponibles();?>
       </div>';
     }else{
       echo'<p class="card-text"><b>Precio</b>: $ '.number_format($registro->precio,2,".",",").' MXN</p>
-      <button type="button" class="btn btn-primary" >Registrarme</button>
+      <button type="button" class="btn btn-primary" onclick="inscribir('.$registro->curso_id.')">Registrarme</button>
       <button type="button" class="btn btn-link" data-toggle="modal" data-target="#Curso'.$registro->curso_id.'" >Más información</button>
       </div>
       </div>

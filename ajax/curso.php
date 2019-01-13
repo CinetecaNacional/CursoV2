@@ -24,8 +24,6 @@ if($precio_promocion){
   $promocion_disponible = Null;
 }
 
-
-
 switch ($_GET["op"]) {
   case 'guardaryeditar':
   if (!file_exists($_FILES['imagen']['tmp_name']) || !is_uploaded_file($_FILES['imagen']['tmp_name'])){

@@ -1,4 +1,3 @@
-var tabla;
 function mostrar(usuario_id){
     $.post("../ajax/usuario.php?op=mostrar",{usuario_id : usuario_id }, function(data, status){
         data = JSON.parse(data);
