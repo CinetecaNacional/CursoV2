@@ -34,7 +34,7 @@
 <script src="../public/datatables/datatables2.min.js" charset="utf-8"></script>
 
 <!--Validaciones de los formularios-->
-<script src="../public/js/ValidacionesFormulario.js" charset="utf-8"></script>
+<script src="../public/js/validacionesFormulario.js" charset="utf-8"></script>
 <!--Animación del formulario-->
 <script src="../public/js/form_animation.js" charset="utf-8"></script>
 <script src="./scripts/login.js" charset="utf-8"></script>

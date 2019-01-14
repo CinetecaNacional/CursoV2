@@ -44,6 +44,18 @@ $("#frmAcceso").on('submit',function(e){
             if (data!="null"){
               data = JSON.parse(data);
               alert('Usuario registrado exitosamente!'+ '\n Su número de matrícula para el sistema es: '+data.boleta);
+              $.post("../ajax/usuario.php?op=verificar",
+              {"boleta":data.boleta,"password":data.password},
+              function(data){
+                if (data!="null"){
+                  data = JSON.parse(data);
+                  alert('Bienvendo '+ data.nombres +'!');
+                  $(location).attr("href","index.php");
+                }
+                else{
+                  alert("Usuario y/o Password incorrectos");
+                }
+              });
             }
             else{
               alert("No se ha registrado el usuario");
