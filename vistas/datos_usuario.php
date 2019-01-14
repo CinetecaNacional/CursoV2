@@ -5,6 +5,9 @@
   <!-- Main content -->
   <section class="content">
       <div class="row justify-content-center">
+        <div class="col-sm-7 align-self-center text-center">
+          <p class="h1">Mis datos</p>
+        </div>
         <div class="col-md-8">
         <p class="text-center h4 text-body"><b>Datos de generales</b></p>
         <div class="datos_usuario">

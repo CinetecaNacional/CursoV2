@@ -1,1 +1,62 @@
------- Usuarios ------
+>------ Tabla de 'usuarios' ------<
+->usuario_id
+<------ Reglas del negocio ------>
+->matricula *
+->password
+->tipo_usuario *
+->disponible *
+<------ datos generales ------>
+->apellido_paterno *
+->apellido_materno *
+->nombres *
+->curp *
+->sexo *
+->fecha_nacimiento *
+->ocupacion *
+->estudios *
+->correo_electronico *
+->telefono
+<------ datos de direccion ------>
+->codigo_postal
+->municipio
+->estado
+->colonia
+<------ Datos de facturacion ------>
+->nombre_factura
+->razon_social
+->rfc
+->dirección
+
+
+>------ Tabla de 'cursos' ------<
+->curso_id
+->disponible *
+->nombre *
+->descripcion
+->imagen
+->precio *
+->tipo_curso *
+->precio_promocion
+->vigencia_promocion
+->promocion_disponible
+
+
+>------ Tabla de 'descuentos' ------<
+->descuento_id
+->nombre *
+->porcentaje *
+->disponible *
+
+>------ Tabla de 'cursos_usuarios' ------<
+->cursos_usuarios_id
+->curso_id *
+->usuario_id *
+->comprobante_pago
+->contrasena
+->estatus *
+->experiencia
+->fecha_limite_pago *
+->link_curso
+->pago
+->precio *
+->referencia *

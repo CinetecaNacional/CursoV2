@@ -5,6 +5,9 @@
   <!-- Main content -->
   <section class="content">
       <div class="row justify-content-center">
+        <div class="col-sm-7 align-self-center text-center">
+          <p class="h1">Mis cursos</p>
+        </div>
         <div class="col-md-10">
         <div class="alert alert-warning" role="alert">
         Cursos a los que estoy en proceso de inscripción
@@ -12,27 +15,12 @@
           <table class="table table-striped">
             <thead>
               <tr>
-                <th scope="col">Clave</th>
                 <th scope="col">Nombre</th>
-                <th scope="col">Precio</th>
-                <th scope="col">Descuento</th>
+                <th scope="col">Costo</th>
                 <th scope="col">fecha límite de pago</th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <th scope="row">002</th>
-                <td>Akira Kurosawa</td>
-                <td>2,000.00 Mx</td>
-                <td>Sin descuento</td>
-                <td>20 de enero de 2019</td>
-                <td>
-                  <div class="btn-group" role="group" aria-label="Basic example">
-                    <button type="button" class="btn btn-primary">Detalles de pago</button>
-                    <button type="button" class="btn btn-success">Ya he realizado mi pago</button>
-                  </div>
-                </td>
-              </tr>
+            <tbody id="cursos_en_proceso">
             </tbody>
           </table>
         <div class="alert alert-success" role="alert">
@@ -41,33 +29,25 @@
         <table class="table table-striped">
           <thead>
             <tr>
-              <th scope="col">Clave</th>
               <th scope="col">Nombre</th>
-              <th scope="col">Precio</th>
+              <th scope="col">Costo</th>
               <th scope="col">Vigencia del curso</th>
+              <th scope="col">link del curso</th>
+              <th scope="col">contraseña</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <th scope="row">001</th>
-              <td>William Shakespeare</td>
-              <td>2,300.00 MXN</td>
-              <td>1 de marzo de 2019</td>
-              <td>
-                <div class="btn-group" role="group" aria-label="Basic example">
-                  <button type="button" class="btn btn-primary">Solicitar factura</button>
-                </div>
-              </td>
-            </tr>
+          <tbody id="cursos_inscritos">
           </tbody>
         </table>
         </div>
         </div>
         </section>
+        <div id="resultado"></div>
         </div>
 <!--Fin-Contenido-->
 
 <?php require '../inc/footer.php';?>
+<script src="./scripts/cursos_usuarios.js" charset="utf-8"></script>
 <!--Validaciones-->
 <script src="../public/cursoForm.js" charset="utf-8"></script>
 <script type="text/javascript" src="scripts/descuento.js"></script>

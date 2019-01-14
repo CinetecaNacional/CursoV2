@@ -22,9 +22,9 @@ class Cursos_Usuarios{
   function __construct(){
   }
   //Implementamos nuestro método para registrar un nuevo usuario en X curso
-  public function insertar($curso_id, $usuario_id, $estatus, $fecha_limite_pago, $precio, $referencia){
-    $sql = "INSERT INTO cursos_usuarios (curso_id, usuario_id, estatus, fecha_limite_pago, precio, referencia)
-    VALUES('$curso_id', '$usuario_id', $estatus , '$fecha_limite_pago', '$precio', '$referencia')";
+  public function insertar($curso_id, $usuario_id, $estatus, $fecha_limite_pago, $precio, $referencia, $pago){
+    $sql = "INSERT INTO cursos_usuarios (curso_id, usuario_id, estatus, fecha_limite_pago, precio, referencia, pago)
+    VALUES('$curso_id', '$usuario_id', $estatus , '$fecha_limite_pago', '$precio', '$referencia', '$pago')";
     return ejecutarConsulta($sql);
   }
   //Implementamos este método cuando la persona nos notifica que ha realizado su pago.
@@ -34,8 +34,8 @@ class Cursos_Usuarios{
     return ejecutarConsulta($sql);
   }
   //Implementamos este método cuando corroboramos que la persona ha realizado su pago y le asignamos credenciales de acceso.
-  public function notificar_credenciales($cursos_usuarios_id, $contrasena, $link_curso, $pago){
-    $sql = "UPDATE cursos_usuarios SET contrasena = '$contrasena', link_curso = '$link_curso', pago = '$pago'
+  public function notificar_credenciales($cursos_usuarios_id, $contrasena, $link_curso, $vigencia_curso){
+    $sql = "UPDATE cursos_usuarios SET contrasena = '$contrasena', link_curso = '$link_curso', vigencia_curso = '$vigencia_curso',pago = 1
     WHERE cursos_usuarios_id = '$cursos_usuarios_id'";
     return ejecutarConsulta($sql);
   }
@@ -51,10 +51,6 @@ class Cursos_Usuarios{
     WHERE cursos_usuarios_id = '$cursos_usuarios_id'";
     return ejecutarConsulta($sql);
   }
-  public function mostrar($cursos_usuarios_id){
-    $sql = "SELECT * FROM cursos_usuarios WHERE cursos_usuarios_id = '$cursos_usuarios_id'";
-    return ejecutarConsultaSimpleFila($sql);
-  }
   public function verificar_inscripciones_pasadas($curso_id, $usuario_id){
     $sql = "SELECT * FROM cursos_usuarios WHERE curso_id = '$curso_id' AND usuario_id = '$usuario_id'";
     return ejecutarConsultaSimpleFila($sql);
@@ -64,11 +60,19 @@ class Cursos_Usuarios{
     return ejecutarConsulta($sql);
   }
   public function listar_notificaciones_pago(){
-    $sql = "SELECT * FROM cursos_usuarios WHERE estatus=1 AND pago=0";
+    $sql = "SELECT cu.cursos_usuarios_id, cu.curso_id, c.nombre AS curso, u.nombres AS nombre_usuario, u.apellido_paterno AS apellido_paterno, u.apellido_materno AS apellido_materno , u.boleta AS boleta, u.password AS password, cu.precio, cu.fecha_limite_pago, cu.referencia FROM cursos_usuarios cu INNER JOIN cursos c ON cu.curso_id=c.curso_id INNER JOIN usuarios u ON cu.usuario_id = u.usuario_id WHERE estatus=1 AND pago=0";
+    return ejecutarConsulta($sql);
+  }
+  public function listar_en_proceso($usuario_id){
+    $sql="SELECT cu.cursos_usuarios_id, cu.curso_id, c.nombre AS curso, cu.precio, cu.fecha_limite_pago FROM cursos_usuarios cu INNER JOIN cursos c ON cu.curso_id=c.curso_id WHERE cu.pago=0 AND cu.usuario_id='$usuario_id'";
+    return ejecutarConsulta($sql);
+  }
+  public function mostrar($cursos_usuarios_id){
+    $sql="SELECT cu.curso_id, cu.usuario_id, c.nombre AS curso, u.nombres AS nombre_usuario, u.boleta AS boleta ,u.apellido_paterno AS apellido_paterno, u.apellido_materno AS apellido_materno, cu.precio, cu.fecha_limite_pago, cu.referencia FROM cursos_usuarios cu INNER JOIN cursos c ON cu.curso_id=c.curso_id INNER JOIN usuarios u ON cu.usuario_id = u.usuario_id WHERE cu.cursos_usuarios_id='$cursos_usuarios_id'";
     return ejecutarConsulta($sql);
   }
   public function listar_credenciales($usuario_id){
-    $sql = "SELECT * FROM cursos_usuarios WHERE estatus=1 AND pago=1";
+    $sql="SELECT cu.cursos_usuarios_id, cu.curso_id, c.nombre AS curso, cu.precio, cu.vigencia_curso, cu.link_curso, cu.contrasena FROM cursos_usuarios cu INNER JOIN cursos c ON cu.curso_id=c.curso_id WHERE cu.estatus=1 AND cu.pago=1 AND cu.usuario_id='$usuario_id'";
     return ejecutarConsulta($sql);
   }
 }

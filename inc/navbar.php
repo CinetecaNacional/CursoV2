@@ -162,9 +162,6 @@
   </div>
 </div>-->
 <div class="row justify-content-center">
-  <div class="col-sm-7 align-self-center text-center">
-    <p class="h1">Cursos en línea</p>
-  </div>
   <div class="col-sm-7 align-self-center">
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">

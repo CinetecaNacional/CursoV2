@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-01-2019 a las 19:12:54
+-- Tiempo de generación: 14-01-2019 a las 06:33:42
 -- Versión del servidor: 10.1.36-MariaDB
 -- Versión de PHP: 5.6.38
 
@@ -48,10 +48,10 @@ CREATE TABLE `cursos` (
 INSERT INTO `cursos` (`curso_id`, `nombre`, `imagen`, `descripcion`, `precio`, `disponible`, `tipo_curso`, `precio_promocion`, `vigencia_promocion`, `promocion_disponible`) VALUES
 (1, 'Maestria', '1547083960.jpg', '', '1000.00', 0, 'Maestría', NULL, NULL, 0),
 (2, 'Akira Kurosawa', '1547091906.jpg', 'La revelación del cine japonés es sin duda el acontecimiento cinematográfico más importante desde el neorrealismo italiano”, escribió en 1955 el crítico francés André Bazin en referencia a la presencia y éxito en los festivales de Cannes y Venecia de las películas de Akira Kurosawa y Teinosuke Kinugasa. En ese momento Occidente descubría un estilo, una fuerza creadora y una expresión dramática únicas, que no habían sido conocidas antes a pesar del gran desarrollo del que gozó la cinematografía en Japón desde sus inicios. Entre 1950 y 1965 Kurosawa fue una garantía de altos ingresos en las taquillas de su país, a la vez que una poderosa influencia en el cine internacional. Ese período, así como su trabajo posterior, son el testimonio constante de un cineasta con un fuerte compromiso artístico, un perfeccionismo insistente, y en una búsqueda sin tregua de la belleza y la emoción más profundas.', '2000.00', 1, 'Online', NULL, NULL, 0),
-(3, 'William Shakespeare', '', NULL, '2300.00', 0, 'Online', NULL, NULL, NULL),
-(4, 'Cine Estadounidense 1', '', NULL, '2300.00', 0, 'Online', NULL, NULL, NULL),
-(5, 'Cine Estadounidense 2', '', '', '3.00', 0, 'Online', '42342.00', '2018-12-06', 0),
-(6, 'Cine Estadounidense 3', '', '', '423.00', 0, 'Online', NULL, NULL, NULL),
+(3, 'William Shakespeare', '', NULL, '2300.00', 1, 'Online', NULL, NULL, NULL),
+(4, 'Cine Estadounidense 1', '', NULL, '2300.00', 1, 'Online', NULL, NULL, NULL),
+(5, 'Cine Estadounidense 2', '', '', '3.00', 1, 'Online', '42342.00', '2018-12-06', 0),
+(6, 'Cine Estadounidense 3', '', '', '423.00', 1, 'Online', NULL, NULL, NULL),
 (7, 'Cine Político', '', '', '32.00', 0, 'Presencial', NULL, NULL, 0),
 (8, 'Peter Greenaway', '', '', '23.00', 0, 'Presencial', NULL, NULL, 0),
 (9, 'Las Rutas del Miedo', '', '', '334.00', 0, 'Presencial', NULL, NULL, 0),
@@ -72,14 +72,18 @@ INSERT INTO `cursos` (`curso_id`, `nombre`, `imagen`, `descripcion`, `precio`, `
 
 CREATE TABLE `cursos_usuarios` (
   `cursos_usuarios_id` int(11) NOT NULL,
-  `cursos_id` int(11) NOT NULL,
+  `curso_id` int(11) NOT NULL,
   `usuario_id` int(11) NOT NULL,
   `precio` decimal(10,2) NOT NULL,
+  `fecha_limite_pago` date NOT NULL,
+  `vigencia_curso` date DEFAULT NULL,
   `referencia` varchar(19) NOT NULL,
   `link_curso` text,
   `contrasena` text,
-  `comprobante_pago` text NOT NULL,
-  `experiencia` varchar(40) NOT NULL
+  `comprobante_pago` text,
+  `experiencia` varchar(40) DEFAULT NULL,
+  `estatus` tinyint(1) DEFAULT NULL,
+  `pago` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -180,7 +184,7 @@ ALTER TABLE `cursos`
 --
 ALTER TABLE `cursos_usuarios`
   ADD PRIMARY KEY (`cursos_usuarios_id`),
-  ADD KEY `cursos_id` (`cursos_id`),
+  ADD KEY `cursos_id` (`curso_id`),
   ADD KEY `usuario_id` (`usuario_id`);
 
 --
@@ -209,7 +213,7 @@ ALTER TABLE `cursos`
 -- AUTO_INCREMENT de la tabla `cursos_usuarios`
 --
 ALTER TABLE `cursos_usuarios`
-  MODIFY `cursos_usuarios_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `cursos_usuarios_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT de la tabla `descuentos`
@@ -231,7 +235,7 @@ ALTER TABLE `usuarios`
 -- Filtros para la tabla `cursos_usuarios`
 --
 ALTER TABLE `cursos_usuarios`
-  ADD CONSTRAINT `cursos_usuarios_ibfk_1` FOREIGN KEY (`cursos_id`) REFERENCES `cursos` (`curso_id`),
+  ADD CONSTRAINT `cursos_usuarios_ibfk_1` FOREIGN KEY (`curso_id`) REFERENCES `cursos` (`curso_id`),
   ADD CONSTRAINT `cursos_usuarios_ibfk_2` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`usuario_id`);
 
 DELIMITER $$
